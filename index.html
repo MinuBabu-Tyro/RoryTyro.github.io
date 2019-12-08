@@ -157,7 +157,7 @@ function doPurchaseWithTyroUI() {
     var iclient = new system[0].IClientWithUI(apiKey, posProductInfo);
     iclient.initiatePurchase({amount: amount, cashout: cashout, integratedReceipt: true}, {
         receiptCallback: function (receipt) {
-            window.print();
+            receipt.merchantReceipt.printElem();
             console.log("Print merchant receipt:");
             console.log(JSON.stringify(receipt));
             $("#merchantReceipt").html(formatReceipt(receipt.merchantReceipt));
@@ -165,7 +165,7 @@ function doPurchaseWithTyroUI() {
         transactionCompleteCallback: function (response) {
             console.log("Purchase response: " + JSON.stringify(response));
             if (response.customerReceipt) {
-                window.print();
+                response.customerReceipt.printElem();
                 $("#customerReceipt").html(formatReceipt(response.customerReceipt));
             }
             $("#result").html(formatResult(response));
