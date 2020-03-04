@@ -220,6 +220,7 @@ function doPurchaseWithCustomUI() {
             $("#merchantReceipt").html(formatReceipt(receipt.merchantReceipt));
         },
         transactionCompleteCallback: function (response) {
+              console.log("Purchase response: " + JSON.stringify(response));
             if (response.customerReceipt) {
                 $("#customerReceipt").html(formatReceipt(response.customerReceipt));
             }
